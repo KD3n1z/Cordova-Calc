@@ -114,21 +114,24 @@ table{
 #result {
     position: absolute;
     right: 30px;
-    overflow-x: scroll;
 }
 
 #expression {
     white-space: nowrap;
     top: 30px;
     max-width: calc(100vw - 100px);
+    overflow-x: scroll;
 }
 
 #result {
     bottom: 30px;
-    font-size: 1.7em;
+    font-size: 2em;
     color: var(--fore-accent-color);
     overflow-wrap: anywhere;
-    max-width: calc(100vw - 50px);
+    width: calc(100vw - 50px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 #menuBtn {
