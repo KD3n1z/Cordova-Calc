@@ -1,0 +1,28 @@
+{
+  "name": "com.kd3n1z.ccalc",
+  "displayName": "Calculator",
+  "version": "1.0.0",
+  "description": "simple and customizable calculator",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "cordova run browser",
+    "make": "cordova build android"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^10.1.2",
+    "cordova-browser": "^6.0.0",
+    "typescript": "^4.9.4"
+  },
+  "cordova": {
+    "platforms": [
+      "browser",
+      "android"
+    ]
+  }
+}
