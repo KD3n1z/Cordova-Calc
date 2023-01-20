@@ -11,6 +11,10 @@ const defaultSettings = {
         "css": "0px",
         "raw": "0"
     },
+    "font-size": {
+        "css": "30px",
+        "raw": "30"
+    },
     "fore-color": {
         "css": "#ffffff",
         "raw": "#ffffff"
@@ -51,6 +55,9 @@ function setSetting(setting: string, e: HTMLInputElement): void {
         case 'radius':
             settings["radius"] = {"css": e.value + "px", "raw": e.value};
             break;
+        case 'font-size':
+            settings["font-size"] = {"css": e.value + "px", "raw": e.value};
+            break;
         default:
             settings[setting] = {"css": e.value, "raw": e.value};
             break;
@@ -69,12 +76,22 @@ function loadSettings(): void {
 }
 
 document.addEventListener("deviceready", () => {
+    screen.orientation.lock('portrait');
+
     let s = localStorage.getItem("settings");
     if(s != null) {
         settings = JSON.parse(s);
     }
 
     loadSettings();
+
+    let loading: HTMLElement = document.getElementById("loading");
+
+    loading.classList.add("closed");
+
+    setTimeout(() => {
+        loading.remove();
+    },400);
 }, false);
 
 // menu interactions

@@ -87,15 +87,17 @@
             <div class="pref">
                 <div><span>Spacing</span><input id="s_spacing" type="range" value="3" min="0" max="15" onchange="setSetting('spacing', this)"></div>
                 <div><span>Radius</span><input id="s_radius" type="range" value="0" min="0" max="40" onchange="setSetting('radius', this)"></div>
+                <div><span>Font size</span><input id="s_font-size" type="range" value="30" min="16" max="40" onchange="setSetting('font-size', this)"></div>
                 <div><span>Screen size</span><input id="s_screen-lines" type="range" step="0.0625" value="0.5" min="0.25" max="0.75" onchange="setSetting('screen-lines', this)"></div>
-                <div><span>Foreground color</span><input id="s_fore-color" type="color" value="#ffffff" onchange="setSetting('fore-color', this)"></div>
-                <div><span>Background color</span><input id="s_body-back-color" type="color" value="#000000" onchange="setSetting('body-back-color', this)"></div>
+                <div><span>Fore color</span><input id="s_fore-color" type="color" value="#ffffff" onchange="setSetting('fore-color', this)"></div>
+                <div><span>Back color</span><input id="s_body-back-color" type="color" value="#000000" onchange="setSetting('body-back-color', this)"></div>
                 <div><span>Button color</span><input id="s_back-color" type="color" value="#353535" onchange="setSetting('back-color', this)"></div>
                 <div><span>Accent color</span><input id="s_fore-accent-color" type="color" value="#ffa500" onchange="setSetting('fore-accent-color', this)"></div>
                 <div><button onclick="resetSettings()">Default</button></div>
             </div>
             <div class="desc">developed with &#10084; by kd3n1z</div>
         </div>
+        <div id="loading">
         <script src="cordova.js"></script>
         <script src="index.js"></script> 
     </body>

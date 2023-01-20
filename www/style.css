@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Regular.ttf');
+    font-weight: 400;
+}
+
 :root{
     --pad: 1px;
     --spacing: 3px;
@@ -7,6 +13,8 @@
     --back-color: #353535;
     --body-back-color: #000000;
     --fore-accent-color: #ffa500;
+
+    --font-size: 30px;
 
     --screen-lines: calc(4 / 8);
     --buttons-lines: 1;
@@ -45,6 +53,21 @@ body, html {
     padding: calc(100vh/(var(--screen-lines) + var(--buttons-lines))*var(--screen-lines) + 20px + var(--pad)) calc(30px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad));
 }
 
+#loading {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: ease-in-out .3s;
+    pointer-events: none;
+}
+
+#loading.closed {
+    opacity: 0;
+}
+
 .menu.closed {
     transform: translate(-100%, 0px);
 }
@@ -56,7 +79,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     user-select: none;                          /* /\ */
-    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Montserrat', system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 td{
@@ -73,7 +96,7 @@ td>button {
     right: 0;
     top: 0;
     transition: ease-in-out .1s;
-    font-size: 30px;
+    font-size: var(--font-size);
     color: var(--fore-color);
 }
 
@@ -172,6 +195,7 @@ table{
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 10px;
+    align-items: center;
 }
 
 .pref>div>input{
