@@ -26,13 +26,17 @@ const defaultSettings = {
     "fore-accent-color": {
         "css": "#ffa500",
         "raw": "#ffa500"
+    },
+    "screen-lines": {
+        "css": "0.5",
+        "raw": "0.5"
     }
 };
 
 let settings: any = defaultSettings;
 
 function resetSettings(): void{
-    settings = defaultSettings;
+    settings = {...defaultSettings};
 
     localStorage.setItem("settings", JSON.stringify(settings));
 
