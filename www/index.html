@@ -85,9 +85,15 @@
         <div id="settings" class="menu closed">
             <div class="xMark" id="menuBtn" onclick="closeMenu('settings')"></div>
             <div class="pref">
-                <div><span>Spacing</span><input id="s_spacing" type="range" value="3" min="0" max="10" onchange="setSetting('spacing', this)"></div>
-                <div><span>Radius</span><input id="s_radius" type="range" value="0" min="0" max="20" onchange="setSetting('radius', this)"></div>
+                <div><span>Spacing</span><input id="s_spacing" type="range" value="3" min="0" max="15" onchange="setSetting('spacing', this)"></div>
+                <div><span>Radius</span><input id="s_radius" type="range" value="0" min="0" max="40" onchange="setSetting('radius', this)"></div>
+                <div><span>Foreground color</span><input id="s_fore-color" type="color" value="#ffffff" onchange="setSetting('fore-color', this)"></div>
+                <div><span>Background color</span><input id="s_body-back-color" type="color" value="#000000" onchange="setSetting('body-back-color', this)"></div>
+                <div><span>Button color</span><input id="s_back-color" type="color" value="#353535" onchange="setSetting('back-color', this)"></div>
+                <div><span>Accent color</span><input id="s_fore-accent-color" type="color" value="#ffa500" onchange="setSetting('fore-accent-color', this)"></div>
+                <div><button onclick="resetSettings()">Reset</button></div>
             </div>
+            <div class="desc">developed with &#10084; by kd3n1z</div>
         </div>
         <script src="cordova.js"></script>
         <script src="index.js"></script> 

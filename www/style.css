@@ -1,11 +1,12 @@
 :root{
     --pad: 1px;
     --spacing: 3px;
+    --radius: 0px;
+
     --fore-color: #ffffff;
     --back-color: #353535;
     --body-back-color: #000000;
     --fore-accent-color: #ffa500;
-    --radius: 0px;
 
     --screen-lines: calc(4 / 7);
     --buttons-lines: 1;
@@ -168,4 +169,20 @@ table{
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 10px;
+}
+
+.pref>div>input{
+    width: 50%;
+}
+
+.pref>div>button{
+    width: 100%;
+}
+
+.desc {
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
 }

@@ -2,7 +2,7 @@
 
 const rootStyle: CSSStyleDeclaration = (document.querySelector(':root') as HTMLElement).style;
 
-let settings: any = {
+const defaultSettings = {
     "spacing": {
         "css": "3px",
         "raw": "3"
@@ -10,8 +10,34 @@ let settings: any = {
     "radius": {
         "css": "0px",
         "raw": "0"
+    },
+    "fore-color": {
+        "css": "#ffffff",
+        "raw": "#ffffff"
+    },
+    "back-color": {
+        "css": "#353535",
+        "raw": "#353535"
+    },
+    "body-back-color": {
+        "css": "#000000",
+        "raw": "#000000"
+    },
+    "fore-accent-color": {
+        "css": "#ffa500",
+        "raw": "#ffa500"
     }
 };
+
+let settings: any = defaultSettings;
+
+function resetSettings(): void{
+    settings = defaultSettings;
+
+    localStorage.setItem("settings", JSON.stringify(settings));
+
+    loadSettings();
+}
 
 function setSetting(setting: string, e: HTMLInputElement): void {
     switch(setting) {
@@ -20,6 +46,9 @@ function setSetting(setting: string, e: HTMLInputElement): void {
             break;
         case 'radius':
             settings["radius"] = {"css": e.value + "px", "raw": e.value};
+            break;
+        default:
+            settings[setting] = {"css": e.value, "raw": e.value};
             break;
     }
 
