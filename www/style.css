@@ -1,7 +1,55 @@
 @font-face {
     font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Thin.ttf');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-ExtraLight.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Montserrat';
     src: url('fonts/Montserrat-Regular.ttf');
     font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-SemiBold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Bold.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-ExtraBold.ttf');
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Black.ttf');
+    font-weight: 900;
 }
 
 :root{
@@ -15,6 +63,7 @@
     --fore-accent-color: #ffa500;
 
     --font-size: 30px;
+    --font-weight: 400;
 
     --screen-lines: calc(4 / 8);
     --buttons-lines: 1;
@@ -22,6 +71,7 @@
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: 'Montserrat', system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     box-sizing: border-box;
 }
 
@@ -72,6 +122,7 @@ body, html {
     transform: translate(-100%, 0px);
 }
 
+
 body {
     box-sizing: border-box;
     padding: calc(env(safe-area-inset-top, 0px) + var(--pad)) calc(env(safe-area-inset-right, 0px) + var(--pad)) calc(env(safe-area-inset-bottom, 0px) + var(--pad)) calc(env(safe-area-inset-left, 0px) + var(--pad));
@@ -79,7 +130,6 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     user-select: none;                          /* /\ */
-    font-family: 'Montserrat', system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 td{
@@ -98,6 +148,7 @@ td>button {
     transition: ease-in-out .1s;
     font-size: var(--font-size);
     color: var(--fore-color);
+    font-weight: var(--font-weight);
 }
 
 .accent {
@@ -185,16 +236,17 @@ table{
 }
 
 .pref {
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .pref>div{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-bottom: 10px;
     align-items: center;
 }
 
@@ -207,9 +259,9 @@ table{
 }
 
 .desc {
-    position: absolute;
     text-align: center;
-    bottom: 20px;
-    width: 100%;
-    left: 0;
+}
+
+input[type="range"] {
+    height: 7px;
 }

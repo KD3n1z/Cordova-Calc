@@ -15,6 +15,10 @@ const defaultSettings = {
         "css": "30px",
         "raw": "30"
     },
+    "font-weight": {
+        "css": "400",
+        "raw": "4"
+    },
     "fore-color": {
         "css": "#ffffff",
         "raw": "#ffffff"
@@ -57,6 +61,9 @@ function setSetting(setting: string, e: HTMLInputElement): void {
             break;
         case 'font-size':
             settings["font-size"] = {"css": e.value + "px", "raw": e.value};
+            break;
+        case 'font-weight':
+            settings["font-weight"] = {"css": (parseInt(e.value) * 100).toString(), "raw": e.value};
             break;
         default:
             settings[setting] = {"css": e.value, "raw": e.value};
