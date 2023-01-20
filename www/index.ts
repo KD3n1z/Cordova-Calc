@@ -3,8 +3,14 @@
 const rootStyle: CSSStyleDeclaration = (document.querySelector(':root') as HTMLElement).style;
 
 let settings: any = {
-    "spacing": "3px",
-    "radius": "0px"
+    "spacing": {
+        "css": "3px",
+        "raw": "3"
+    },
+    "radius": {
+        "css": "0px",
+        "raw": "0"
+    }
 };
 
 function setSetting(setting: string, e: HTMLInputElement): void {
