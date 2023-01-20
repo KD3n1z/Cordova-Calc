@@ -149,6 +149,14 @@ td>button {
     font-size: var(--font-size);
     color: var(--fore-color);
     font-weight: var(--font-weight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+td>button>img{
+    width: var(--font-size);
+    height: var(--font-size);
 }
 
 .accent {
@@ -224,11 +232,11 @@ table{
 }
 
 .bars {
-    background-image: url('svgs/bars-solid.svg');
+    background-image: url('svgs/menu-outline.svg');
 }
 
 .xMark {
-    background-image: url('svgs/xmark-solid.svg');
+    background-image: url('svgs/close-outline.svg');
 }
 
 #menuBtn:active {
