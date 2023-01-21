@@ -25,4 +25,4 @@ node_modules/
 /plugins/
 /platforms/
 
-/www/*.js
+/www/index.js
