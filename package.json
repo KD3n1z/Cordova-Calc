@@ -17,6 +17,7 @@
   "devDependencies": {
     "cordova-android": "^10.1.2",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "es6-promise-plugin": "^4.2.2",
     "typescript": "^4.9.4"
@@ -27,7 +28,8 @@
       "android"
     ],
     "plugins": {
-      "cordova-plugin-screen-orientation": {}
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-dialogs": {}
     }
   }
 }

@@ -155,8 +155,8 @@ td>button {
 }
 
 td>button>img{
-    width: var(--font-size);
-    height: var(--font-size);
+    width: calc(var(--font-size)*1.4);
+    height: calc(var(--font-size)*1.4);
 }
 
 .accent {
@@ -164,8 +164,13 @@ td>button>img{
 }
 
 .accent2 {
+    font-size: calc(var(--font-size)*1.5);
     background-color: var(--fore-accent-color);
     color: black;
+}
+
+.radic {
+    font-size: var(--font-size) !important;
 }
 
 .black {
@@ -194,6 +199,7 @@ table{
 
 #expression,
 #result {
+    color: var(--fore-color);
     position: absolute;
     right: 30px;
 }
@@ -244,6 +250,7 @@ table{
 }
 
 .pref {
+    color: white;
     height: 100%;
     width: 100%;
     display: flex;

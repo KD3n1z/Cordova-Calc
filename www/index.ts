@@ -1,4 +1,5 @@
 //#region menus and other
+const build: number = 1;
 
 const rootStyle: CSSStyleDeclaration = (document.querySelector(':root') as HTMLElement).style;
 
@@ -94,6 +95,27 @@ document.addEventListener("deviceready", () => {
 
     let loading: HTMLElement = document.getElementById("loading");
 
+    fetch(
+        'https://api.github.com/repos/KD3n1z/cordova-calc/releases/latest'
+    ).then((response) => response.json())
+    .then(
+        (data) => {
+            let latest: string = data.tag_name.slice(5);
+            if(parseInt(latest) > build) {
+                navigator.notification.confirm(
+                    'Do you want to update? (b' + build + ' -> b' + latest + ')',
+                    (choice: number) => {
+                        if(choice == 1) {
+                            window.open(data.assets[0].browser_download_url, '_empty');
+                        }
+                    },
+                    'Update available!',
+                    ['Yes','No']
+                );
+            }
+        }
+    );
+
     loading.classList.add("closed");
 
     setTimeout(() => {
@@ -183,6 +205,10 @@ function changeSign(): void {
 
 
 function percent(): void {
+    if(lastEx != ""){
+        number = result;
+    }
+
     number = (parseFloat(number) / 100).toString();
 
     if(number == "NaN") {
@@ -193,6 +219,10 @@ function percent(): void {
 }
 
 function root(): void {
+    if(lastEx != ""){
+        number = result;
+    }
+
     number = Math.sqrt(parseFloat(number)).toString();
 
     if(number == "NaN") {
