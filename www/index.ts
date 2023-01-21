@@ -42,7 +42,7 @@ const defaultSettings = {
     }
 };
 
-let settings: any = defaultSettings;
+let settings: any = {...defaultSettings};
 
 function resetSettings(): void{
     settings = {...defaultSettings};
