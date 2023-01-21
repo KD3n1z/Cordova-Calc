@@ -1,4 +1,4 @@
-# Cordova-Calc
+# cordova-calc
 Simple and customizable calculator built with [Cordova](https://cordova.apache.org/)<br>
 ## Credits
 - [Cordova](https://cordova.apache.org/) by [Apache](https://apache.org/)
