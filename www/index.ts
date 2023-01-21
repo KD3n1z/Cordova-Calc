@@ -1,5 +1,6 @@
-//#region menus and other
 const build: number = 1;
+
+//#region menus and other
 
 const rootStyle: CSSStyleDeclaration = (document.querySelector(':root') as HTMLElement).style;
 
