@@ -1,5 +1,6 @@
 # cordova-calc
 Simple and customizable calculator built with [Cordova](https://cordova.apache.org/)<br>
+![cordova-calc](https://raw.githubusercontent.com/KD3n1z/kd3n1z-com/main/cordova-calc-screenshot.png "cordova-calc")
 ## Credits
 - [Cordova](https://cordova.apache.org/) by [Apache](https://apache.org/)
 - [Icons](https://ionic.io/ionicons) by [Ionic](https://ionic.io/)
