@@ -151,25 +151,35 @@ function closeMenu(id): void {
 let expressionDisplay: HTMLElement = document.getElementById('expression');
 let resultDisplay: HTMLElement = document.getElementById('result');
 
-let expression: string = "";
-let number: string = "";
+let expression: {
+    "type": "number" | "oper",
+    "value": string
+}[] = [];
 
 function clearCurrent(): void {
-    number = "";
+    if(expression.length > 0){
+        expression = expression.slice(0, -1);
+    }
 
     display();
 }
 
 function clearAll(): void {
-    expression = "";
-    number = "";
+    expression = [];
 
     display();
 }
 
 function remove(): void {
-    if(number.length > 0) {
-        number = number.slice(0, -1);
+    if(expression.length > 0){
+        if(expression[expression.length - 1].type == "oper") {
+            expression = expression.slice(0, expression.length - 1);
+        }else {
+            expression[expression.length - 1].value = expression[expression.length - 1].value.slice(0, -1);
+            if(expression[expression.length - 1].value.length <= 0) {
+                expression = expression.slice(0, -1);
+            }
+        }
     }
 
     display();
@@ -178,27 +188,38 @@ function remove(): void {
 let mem: string = "";
 
 function copy(): void {
-    if(lastEx != "") {
-        mem = result;
-        return;
+    if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+        mem = expression[expression.length - 1].value;
     }
-    mem = number;
 }
 
 function paste(): void {
-    number = mem;
+    if(mem != ""){
+        if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+            expression[expression.length - 1].value = mem;
+        }else{
+            expression.push({
+                "value": mem,
+                "type": "number"
+            });
+        }
+    }
     display();
 }
 
 function changeSign(): void {
-    if(lastEx != "") {
-        number = result;
-    }
-
-    if(number.length > 0 && number[0] == '-') {
-        number = number.slice(1);
+    if(expression.length <= 0 || expression[expression.length - 1].type == "oper"){
+        expression.push({
+            "type": "number",
+            "value": "-"
+        })
+    }else if(expression[expression.length - 1].value[0] == '-') {
+        expression[expression.length - 1].value = expression[expression.length - 1].value.slice(1);
+        if(expression[expression.length - 1].value.length <= 0) {
+            expression = expression.slice(0, -1);
+        }
     }else{
-        number = '-' + number;
+        expression[expression.length - 1].value = '-' + expression[expression.length - 1].value;
     }
 
     display();
@@ -206,107 +227,112 @@ function changeSign(): void {
 
 
 function percent(): void {
-    if(lastEx != ""){
-        number = result;
-    }
-
-    number = (parseFloat(number) / 100).toString();
-
-    if(number == "NaN") {
-        number = "";
+    if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+        expression[expression.length - 1].value = eval('(' + expression[expression.length - 1].value + ') / 100').toString();
     }
 
     display();
 }
 
 function root(): void {
-    if(lastEx != ""){
-        number = result;
-    }
-
-    number = Math.sqrt(parseFloat(number)).toString();
-
-    if(number == "NaN") {
-        number = "";
+    if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+        expression[expression.length - 1].value = Math.sqrt(eval('(' + expression[expression.length - 1].value + ')')).toString();
     }
 
     display();
 }
 
 function setOper(o: string): void {
-    if(lastEx != "") {
-        expression = result + " " + o;
-
-        display();
-        return;
-    }
-
-    if(includes(expression, '+') || includes(expression, '-') || includes(expression, '/') || includes(expression, '*')) {
-        if(number == ""){
-            expression = expression.slice(0, -1) + o;
-            display();
-            return;
+    if(expression.length == 0)  {   // expression is empty
+        expression.push({           // add number so expression always starts with number
+            "type": "number",
+            "value": o == '/' || o == '*' ? '1' : '0'
+        });
+        expression.push({           // add operator
+            "type": "oper",
+            "value": o
+        });
+    }else{
+        if(expression[expression.length - 1].type == 'oper') {
+            expression[expression.length - 1].value = o; // change operator
         }else{
-            number = eval(expression + number);
+            expression.push({ // add operator
+                "type": "oper",
+                "value": o
+            });
         }
     }
-    expression = number + " " + o;
-
-    number = "";
 
     display();
 }
 
 function comma(): void {
-    if(number == "") {
-        number = "0.";
-    }else if(!includes(number, ".")) {
-        number += ".";
+    if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+        for(let i: number = 0; i < expression[expression.length - 1].value.length; i++) {
+            if(expression[expression.length - 1].value[i] == '.') {
+                return;
+            }
+        }
+        
+        expression[expression.length - 1].value += '.';
+    }else{
+        expression.push({
+            "value": '0.',
+            "type": "number"
+        });
     }
 
     display();
-}
-
-function includes(s: string, e: string) {
-    for(let i: number = 0; i < s.length; i++) {
-        if(s[i] == e) {
-            return true;
-        }
-    }
-    return false;
 }
 
 function btn(e: HTMLElement) : void {
-    number += e.textContent.trim();
+    if(expression.length > 0 && expression[expression.length - 1].type == "number") {
+        expression[expression.length - 1].value += e.textContent;
+    }else{
+        expression.push({
+            "value": e.textContent,
+            "type": "number"
+        });
+    }
+
     display();
 }
 
-let result: string = "";
-let lastNum: string = "";
-let lastEx: string = "";
-
 function calc(): void {
-    if(lastEx != ""){
-        expression = lastEx;
-        number = lastNum;
-    }
-    if(number != ""){
-        
-        expressionDisplay.textContent = expression + " " + number + " =";
-        result = eval(expression + number).toString();
-        resultDisplay.textContent = result;
-        lastEx = result + " " + expression[expression.length - 1];
-        lastNum = number;
+    let cExp: string = "";
+    let expressionText: string = "";
 
-        expression = number = "";
-    }
+    expression.forEach(element => {
+        if(element.type == "number") {
+            cExp += "(" + element.value + ")"
+        }else{
+            cExp += element.value;
+        }
+        expressionText += element.value + " ";
+    });
+
+    console.log(cExp);
+
+    expression = [{
+        "type": "number",
+        "value": eval(cExp)
+    }];
+
+    display();
+
+    expressionDisplay.textContent = expressionText + "=";
 }
 
 function display(): void {
-    lastEx = "";
+    let number: string = expression.length > 0 && expression[expression.length - 1].type == "number" ? expression[expression.length - 1].value : "";
+    let expressionText: string = "";
 
-    expressionDisplay.textContent = expression;
+    expression.forEach(element => {
+        expressionText += " " + element.value;
+    });
+
     resultDisplay.textContent = number;
+    expressionDisplay.textContent = expressionText;
 }
 
 display();

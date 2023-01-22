@@ -208,7 +208,7 @@ table{
     white-space: nowrap;
     top: 30px;
     max-width: calc(100vw - 100px);
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 #result {
