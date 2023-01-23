@@ -315,7 +315,7 @@ function calc(): void {
 
     expression = [{
         "type": "number",
-        "value": eval(cExp)
+        "value": eval(cExp).toString()
     }];
 
     display();
