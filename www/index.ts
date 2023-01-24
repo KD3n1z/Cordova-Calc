@@ -47,7 +47,7 @@ const defaultSettings = {
     }
 };
 
-let settings: any = {...defaultSettings};
+let settings: any;
 
 function resetSettings(): void{
     settings = {...defaultSettings};
@@ -345,15 +345,28 @@ function openLink(url: string): void {
 }
 
 document.addEventListener("deviceready", () => {
+    settings = {...defaultSettings};
+
+    let loading: HTMLElement = document.getElementById("loading");
+
+    setTimeout(() => {
+        loading.remove();
+    },1000);
+
+
     display();
 
     screen.orientation.lock('portrait');
 
     document.getElementById("buildNum").textContent = build.toString();
 
-    let s = localStorage.getItem("settings");
-    if(s != null) {
-        settings = JSON.parse(s);
+    let sJson: string = localStorage.getItem("settings");
+    if(sJson != null) {
+        let s = JSON.parse(sJson);
+
+        Object.keys(s).forEach(element => {
+            settings[element] = s[element];
+        });
     }
 
     loadSettings();
@@ -381,11 +394,5 @@ document.addEventListener("deviceready", () => {
         }
     );
 
-    let loading: HTMLElement = document.getElementById("loading");
-
     loading.classList.add("closed");    // start animation
-
-    setTimeout(() => {
-        loading.remove();               // remove the element after animation
-    },400);
 }, false);
