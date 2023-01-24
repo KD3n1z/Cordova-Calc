@@ -98,9 +98,14 @@ body, html {
     width: 100vw;
     height: 100vh;
     background-color: #0000009c;
-    transition: ease-in-out .2s;
+    transition: cubic-bezier(0.65, 0.05, 0.36, 1) .2s;
     text-align: right;
     padding: calc(100vh/(var(--screen-lines) + var(--buttons-lines))*var(--screen-lines) + 20px + var(--pad)) calc(30px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad));
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #loading {
@@ -222,7 +227,7 @@ table{
     align-items: flex-end;
 }
 
-#menuBtn {
+.closeBtn {
     position: absolute;
     top: 25px;
     left: 20px;
@@ -233,8 +238,19 @@ table{
     background-size: 100% 100%;
 }
 
-#menuBtn.closed {
+.closeBtn.closed {
     transform: scale(0);
+}
+
+.infoBtn {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+    transition: ease-in-out .2s;
+    background-size: 100% 100%;
 }
 
 .bars {
@@ -245,16 +261,42 @@ table{
     background-image: url('svgs/close-outline.svg');
 }
 
+.nfoSvg {
+    background-image: url('svgs/information-circle-outline.svg');
+}
+
 #menuBtn:active {
     opacity: 0.5;
 }
 
-.pref {
+.menuContent {
     color: white;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.info {
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.info>*{
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: underline;
+    color: lightblue;
+    white-space: nowrap;
+}
+
+hr {
+    width: 80%;
+}
+
+.pref {
     justify-content: space-between;
 }
 
@@ -271,10 +313,6 @@ table{
 
 .pref>div>button{
     width: 100%;
-}
-
-.desc {
-    text-align: center;
 }
 
 input[type="range"] {

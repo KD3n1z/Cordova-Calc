@@ -1,6 +1,6 @@
 const build: number = 3;
 
-//#region menus and other
+//#region settings
 
 const rootStyle: CSSStyleDeclaration = (document.querySelector(':root') as HTMLElement).style;
 
@@ -84,69 +84,35 @@ function loadSettings(): void {
     });
 }
 
-document.addEventListener("deviceready", () => {
-    screen.orientation.lock('portrait');
+//#endregion
 
-    let s = localStorage.getItem("settings");
-    if(s != null) {
-        settings = JSON.parse(s);
-    }
+//#region menus
 
-    loadSettings();
-
-    let loading: HTMLElement = document.getElementById("loading");
-
-    fetch(
-        'https://api.github.com/repos/KD3n1z/cordova-calc/releases/latest'
-    ).then((response) => response.json())
-    .then(
-        (data) => {
-            let latest: string = data.tag_name.slice(5);
-            if(parseInt(latest) > build) {
-                navigator.notification.confirm(
-                    'Do you want to update? (b' + build + ' -> b' + latest + ')',
-                    (choice: number) => {
-                        if(choice == 1) {
-                            window.open(data.assets[0].browser_download_url, '_empty');
-                        }
-                    },
-                    'Update available!',
-                    ['Yes','No']
-                );
-            }
-        }
-    );
-
-    loading.classList.add("closed");
-
-    setTimeout(() => {
-        loading.remove();
-    },400);
-}, false);
-
-// menu interactions
-
-let menuBtn: HTMLElement = document.getElementById('menuBtn');
-
-function openMenu(id): void {
+function openMenu(id: string, currentMenuId: string): void {
     let element: HTMLElement = document.getElementById(id);
     if(element.classList.contains('closed')) {
         element.classList.remove('closed');
-        menuBtn.classList.add('closed');
+        document.getElementById(currentMenuId).querySelector('.closeBtn').classList.add('closed');
+        if(currentMenuId != 'main'){
+            document.getElementById(currentMenuId).classList.add('hidden');
+        }
     }
 }
 
-function closeMenu(id): void {
+function closeMenu(id: string, parentMenuId: string): void {
     let element: HTMLElement = document.getElementById(id);
     if(!element.classList.contains('closed')) {
         element.classList.add('closed');
-        menuBtn.classList.remove('closed');
+        document.getElementById(parentMenuId).querySelector('.closeBtn').classList.remove('closed');
+        if(parentMenuId != 'main'){
+            document.getElementById(parentMenuId).classList.remove('hidden');
+        }
     }
 }
 
 //#endregion
 
-// main calculator code
+//#region main calculator code
 
 let expressionDisplay: HTMLElement = document.getElementById('expression');
 let resultDisplay: HTMLElement = document.getElementById('result');
@@ -335,4 +301,54 @@ function display(): void {
     expressionDisplay.textContent = expressionText;
 }
 
-display();
+//#endregion
+
+function openLink(url: string): void {
+    window.open(url, '_empty');
+}
+
+document.addEventListener("deviceready", () => {
+    display();
+
+    screen.orientation.lock('portrait');
+
+    document.getElementById("buildNum").textContent = build.toString();
+
+    let s = localStorage.getItem("settings");
+    if(s != null) {
+        settings = JSON.parse(s);
+    }
+
+    loadSettings();
+
+    // check for updates
+    fetch(
+        'https://api.github.com/repos/KD3n1z/cordova-calc/releases/latest'
+    ).then((response) => response.json())
+    .then(
+        (data) => {
+            let latest: string = data.tag_name.slice(5);
+            console.log('latest build on github: ' + latest);
+            if(parseInt(latest) > build) {
+                navigator.notification.confirm(
+                    'Do you want to update? (b' + build + ' -> b' + latest + ')',
+                    (choice: number) => {
+                        if(choice == 1) {
+                            openLink(data.assets[0].browser_download_url);
+                        }
+                    },
+                    'Update available!',
+                    ['Yes','No']
+                );
+            }
+        }
+    );
+
+    let loading: HTMLElement = document.getElementById("loading");
+
+    loading.classList.add("closed");    // start animation
+
+    setTimeout(() => {
+        loading.remove();               // remove the element after animation
+    },400);
+}, false);

@@ -28,7 +28,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="unsafe-inline default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src 'self' http://api.github.com;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0, width=device-width, viewport-fit=cover">
@@ -37,9 +37,9 @@
         <title>Calculator</title>
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper" id="main">
             <div id="screen">
-                <div class="bars" id="menuBtn" onclick="openMenu('settings')"></div>
+                <div class="bars closeBtn" onclick="openMenu('settings', 'main')"></div>
                 <span id="expression"></span>
                 <span id="result"></span>
             </div>
@@ -83,8 +83,9 @@
             </table>
         </div>
         <div id="settings" class="menu closed">
-            <div class="xMark" id="menuBtn" onclick="closeMenu('settings')"></div>
-            <div class="pref">
+            <div class="xMark closeBtn" onclick="closeMenu('settings', 'main')"></div>
+            <div class="infoBtn nfoSvg" onclick="openMenu('info', 'settings')"></div>
+            <div class="menuContent pref">
                 <div><span>Spacing</span><input id="s_spacing" type="range" value="3" min="0" max="15" onchange="setSetting('spacing', this)"></div>
                 <div><span>Radius</span><input id="s_radius" type="range" value="0" min="0" max="40" onchange="setSetting('radius', this)"></div>
                 <div><span>Font size</span><input id="s_font-size" type="range" value="30" min="16" max="40" onchange="setSetting('font-size', this)"></div>
@@ -95,7 +96,23 @@
                 <div><span>Button color</span><input id="s_back-color" type="color" value="#353535" onchange="setSetting('back-color', this)"></div>
                 <div><span>Accent color</span><input id="s_fore-accent-color" type="color" value="#ffa500" onchange="setSetting('fore-accent-color', this)"></div>
                 <div><button onclick="resetSettings()">Default</button></div>
-                <span class="desc">developed with &#10084; by kd3n1z</span>
+            </div>
+        </div>
+        <div id="info" class="menu closed">
+            <div class="xMark closeBtn" id="menuBtn" onclick="closeMenu('info', 'settings')"></div>
+            <div class="menuContent info">
+                <span>Calculator, build <span id="buildNum">?</span></span>
+                <span>developed with &#10084; by <a onclick="openLink('https://kd3n1z.com/')">kd3n1z</a></span>
+                <br>
+                <span>Credits</span>
+                <span><a onclick="openLink('https://cordova.apache.org/')">Cordova</a> by <a onclick="openLink('https://apache.org/')">Apache</a></span>
+                <span><a onclick="openLink('https://ionic.io/ionicons')">Icons</a> by <a onclick="openLink('https://ionic.io/')">Ionic</a></span>
+                <span><a onclick="openLink('https://fonts.google.com/specimen/Montserrat')">Montserrat</a> by 
+                    <a onclick="openLink('https://fonts.google.com/?query=Julieta%20Ulanovsky')">Julieta Ulanovsky</a>, 
+                    <a onclick="openLink('https://fonts.google.com/?query=Sol%20Matas')">Sol Matas</a>, 
+                    <a onclick="openLink('https://fonts.google.com/?query=Juan%20Pablo%20del%20Peral')">Juan Pablo del Peral</a>, 
+                    <a onclick="openLink('https://fonts.google.com/?query=Jacques%20Le%20Bailly')">Jacques Le Bailly</a>
+                </span>
             </div>
         </div>
         <div id="loading">
