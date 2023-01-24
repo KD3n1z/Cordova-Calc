@@ -92,8 +92,17 @@ function loadSettings(): void {
         parseInt(rgbHex[1], 16),
         parseInt(rgbHex[2], 16)
     ];
+
+    rgbHex = settings["fore-accent-color"].css.slice(1).match(/.{1,2}/g);
+
+    let accentRgb: number[] = [
+        parseInt(rgbHex[0], 16),
+        parseInt(rgbHex[1], 16),
+        parseInt(rgbHex[2], 16)
+    ];
     
     rootStyle.setProperty('--inverted-back-color', (bgRgb[0] + bgRgb[1] + bgRgb[2]) < 384 ? '#ffffff' : '#000000');
+    rootStyle.setProperty('--inverted-accent-color', (accentRgb[0] + accentRgb[1] + accentRgb[2]) < 384 ? '#ffffff' : '#000000');
 }
 
 //#endregion

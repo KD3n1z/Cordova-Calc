@@ -61,7 +61,9 @@
     --back-color: #353535;
     --body-back-color: #000000;
     --fore-accent-color: #ffa500;
+
     --inverted-back-color: white;
+    --inverted-accent-color: black;
 
     --font-size: 30px;
     --font-weight: 400;
@@ -160,9 +162,10 @@ td>button {
     justify-content: center;
 }
 
-td>button>img{
+td>button>div{
     width: calc(var(--font-size)*1.4);
     height: calc(var(--font-size)*1.4);
+    background-color: var(--inverted-accent-color);
 }
 
 .accent {
@@ -172,7 +175,7 @@ td>button>img{
 .accent2 {
     font-size: calc(var(--font-size)*1.5);
     background-color: var(--fore-accent-color);
-    color: black;
+    color: var(--inverted-accent-color);
 }
 
 .radic {
@@ -272,6 +275,11 @@ table{
 .nfoSvg {
     mask-image: url('svgs/information-circle-outline.svg');
     -webkit-mask-image: url('svgs/information-circle-outline.svg');
+}
+
+.backspace {
+    mask-image: url('svgs/backspace-outline.svg');
+    -webkit-mask-image: url('svgs/backspace-outline.svg');
 }
 
 #menuBtn:active {
