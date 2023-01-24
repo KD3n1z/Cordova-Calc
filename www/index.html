@@ -60,28 +60,28 @@
                     <td><button onclick="btn(this)">7</button></td>
                     <td><button onclick="btn(this)">8</button></td>
                     <td><button onclick="btn(this)">9</button></td>
-                    <td><button onclick="setOper('+')" class="accent2">+</button></td>
+                    <td><button onclick="setOper('/')" class="accent2">&#247;</button></td>
                 </tr>
                 <tr>
                     <td><button onclick="btn(this)">4</button></td>
                     <td><button onclick="btn(this)">5</button></td>
                     <td><button onclick="btn(this)">6</button></td>
-                    <td><button onclick="setOper('-')" class="accent2">-</button></td>
+                    <td><button onclick="setOper('*')" class="accent2">&#215;</button></td>
                 </tr>
                 <tr>
                     <td><button onclick="btn(this)">1</button></td>
                     <td><button onclick="btn(this)">2</button></td>
                     <td><button onclick="btn(this)">3</button></td>
-                    <td><button onclick="setOper('*')" class="accent2">&#215;</button></td>
+                    <td><button onclick="setOper('-')" class="accent2">-</button></td>
                 </tr>
                 <tr>
                     <td><button onclick="comma()">,</button></td>
                     <td><button onclick="btn(this)">0</button></td>
                     <td><button onclick="calc()" class="black">=</button></td>
-                    <td><button onclick="setOper('/')" class="accent2">&#247;</button></td>
+                    <td><button onclick="setOper('+')" class="accent2">+</button></td>
                 </tr>
             </table>
-            <table id="slim">
+            <table id="slim" class="hidden">
                 <tr>
                     <td><button onclick="clearAll()" class="accent">AC</button></td>
                     <td><button onclick="changeSign()">+&#8725;-</button></td>
@@ -127,6 +127,7 @@
                 <div><span>Back color</span><input id="s_body-back-color" type="color" value="#000000" onchange="setSetting('body-back-color', this)"></div>
                 <div><span>Button color</span><input id="s_back-color" type="color" value="#353535" onchange="setSetting('back-color', this)"></div>
                 <div><span>Accent color</span><input id="s_fore-accent-color" type="color" value="#ffa500" onchange="setSetting('fore-accent-color', this)"></div>
+                <div><span>Layout</span><select id="s_layout" onchange="setSetting('layout', this)" value="d"><option value="d">default</option><option value="s">simple</option></select></div>
                 <div><button onclick="resetSettings()">Default</button></div>
             </div>
         </div>

@@ -106,9 +106,13 @@ body, html {
     padding: calc(100vh/(var(--screen-lines) + var(--buttons-lines))*var(--screen-lines) + 20px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad));
 }
 
-.hidden {
+.menu.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+table.hidden {
+    display: none;
 }
 
 #loading {
@@ -334,9 +338,4 @@ hr {
 
 input[type="range"] {
     height: 7px;
-}
-
-
-#slim {
-    display: none;
 }

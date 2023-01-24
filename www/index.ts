@@ -40,6 +40,10 @@ const defaultSettings = {
     "screen-lines": {
         "css": "0.5",
         "raw": "0.5"
+    },
+    "layout": {
+        "css": "d",
+        "raw": "d"
     }
 };
 
@@ -84,6 +88,18 @@ function loadSettings(): void {
             (document.getElementById("s_" + element) as HTMLInputElement).value = settings[element].raw;
         }catch{}
     });
+
+    if(settings["layout"].raw == "d") {
+        if(document.getElementById("full").classList.contains('hidden')) {
+            document.getElementById("full").classList.remove('hidden');
+            document.getElementById("slim").classList.add('hidden');
+        }
+    }else{
+        if(document.getElementById("slim").classList.contains('hidden')) {
+            document.getElementById("slim").classList.remove('hidden');
+            document.getElementById("full").classList.add('hidden');
+        }
+    }
     
     let rgbHex = settings["body-back-color"].css.slice(1).match(/.{1,2}/g);
 
@@ -295,7 +311,7 @@ function calc(): void {
         }else{
             cExp += element.value;
         }
-        expressionText += element.value + " ";
+        expressionText += (element.type == "oper" ? (element.value == "/" ? "÷" : (element.value == "*" ? "×" : element.value)) : element.value) + " ";
     });
 
     console.log(cExp);
@@ -315,7 +331,7 @@ function display(): void {
     let expressionText: string = "";
 
     expression.forEach(element => {
-        expressionText += " " + element.value;
+        expressionText += " " + (element.type == "oper" ? (element.value == "/" ? "÷" : (element.value == "*" ? "×" : element.value)) : element.value);
     });
 
     resultDisplay.textContent = number;
