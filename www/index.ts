@@ -80,8 +80,20 @@ function setSetting(setting: string, e: HTMLInputElement): void {
 function loadSettings(): void {
     Object.keys(settings).forEach(element => {
         rootStyle.setProperty('--' + element, settings[element].css);
-        (document.getElementById("s_" + element) as HTMLInputElement).value = settings[element].raw;
+        try{
+            (document.getElementById("s_" + element) as HTMLInputElement).value = settings[element].raw;
+        }catch{}
     });
+    
+    let rgbHex = settings["body-back-color"].css.slice(1).match(/.{1,2}/g);
+
+    let bgRgb: number[] = [
+        parseInt(rgbHex[0], 16),
+        parseInt(rgbHex[1], 16),
+        parseInt(rgbHex[2], 16)
+    ];
+    
+    rootStyle.setProperty('--inverted-back-color', (bgRgb[0] + bgRgb[1] + bgRgb[2]) < 384 ? '#ffffff' : '#000000');
 }
 
 //#endregion

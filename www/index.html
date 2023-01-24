@@ -28,7 +28,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src 'self' http://api.github.com;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src 'self' https://api.github.com;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0, width=device-width, viewport-fit=cover">
@@ -43,7 +43,7 @@
                 <span id="expression"></span>
                 <span id="result"></span>
             </div>
-            <table>
+            <table id="full">
                 <tr>
                     <td><button onclick="clearAll()" class="accent">AC</button></td>
                     <td><button onclick="copy()">M</button></td>
@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td><button onclick="clearCurrent()" class="accent">C</button></td>
-                    <td><button onclick="changeSign()">+/-</button></td>
+                    <td><button onclick="changeSign()">+&#8725;-</button></td>
                     <td><button onclick="percent()">%</button></td>
                     <td><button onclick="root()" class="accent2 radic">&radic;</button></td>
                 </tr>
@@ -79,6 +79,38 @@
                     <td><button onclick="btn(this)">0</button></td>
                     <td><button onclick="calc()" class="black">=</button></td>
                     <td><button onclick="setOper('/')" class="accent2">&#247;</button></td>
+                </tr>
+            </table>
+            <table id="slim">
+                <tr>
+                    <td><button onclick="clearAll()" class="accent">AC</button></td>
+                    <td><button onclick="changeSign()">+&#8725;-</button></td>
+                    <td><button onclick="percent()">%</button></td>
+                    <td><button onclick="remove()" class="accent2"><!--&#9664;--><img src="svgs/backspace-outline.svg"></button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="btn(this)">7</button></td>
+                    <td><button onclick="btn(this)">8</button></td>
+                    <td><button onclick="btn(this)">9</button></td>
+                    <td><button onclick="setOper('/')" class="accent2">&#247;</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="btn(this)">4</button></td>
+                    <td><button onclick="btn(this)">5</button></td>
+                    <td><button onclick="btn(this)">6</button></td>
+                    <td><button onclick="setOper('*')" class="accent2">&#215;</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="btn(this)">1</button></td>
+                    <td><button onclick="btn(this)">2</button></td>
+                    <td><button onclick="btn(this)">3</button></td>
+                    <td><button onclick="setOper('-')" class="accent2">-</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="comma()">,</button></td>
+                    <td><button onclick="btn(this)">0</button></td>
+                    <td><button onclick="calc()" class="black">=</button></td>
+                    <td><button onclick="setOper('+')" class="accent2">+</button></td>
                 </tr>
             </table>
         </div>

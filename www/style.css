@@ -61,6 +61,7 @@
     --back-color: #353535;
     --body-back-color: #000000;
     --fore-accent-color: #ffa500;
+    --inverted-back-color: white;
 
     --font-size: 30px;
     --font-weight: 400;
@@ -100,7 +101,7 @@ body, html {
     background-color: #0000009c;
     transition: cubic-bezier(0.65, 0.05, 0.36, 1) .2s;
     text-align: right;
-    padding: calc(100vh/(var(--screen-lines) + var(--buttons-lines))*var(--screen-lines) + 20px + var(--pad)) calc(30px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad));
+    padding: calc(100vh/(var(--screen-lines) + var(--buttons-lines))*var(--screen-lines) + 20px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad)) calc(20px + var(--pad));
 }
 
 .hidden {
@@ -180,6 +181,7 @@ td>button>img{
 
 .black {
     background-color: var(--body-back-color);
+    color: var(--inverted-back-color);
 }
 
 .black:active {
@@ -204,7 +206,7 @@ table{
 
 #expression,
 #result {
-    color: var(--fore-color);
+    color: var(--inverted-back-color);
     position: absolute;
     right: 30px;
 }
@@ -233,9 +235,13 @@ table{
     left: 20px;
     width: 30px;
     height: 30px;
-    filter: invert(1);
+    background-color: white;
     transition: ease-in-out .2s;
-    background-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+#main .closeBtn {
+    background-color: var(--inverted-back-color) !important;
 }
 
 .closeBtn.closed {
@@ -248,21 +254,24 @@ table{
     right: 20px;
     width: 30px;
     height: 30px;
-    filter: invert(1);
+    background-color: white;
     transition: ease-in-out .2s;
-    background-size: 100% 100%;
+    mask-size: 100% 100%;
 }
 
 .bars {
-    background-image: url('svgs/menu-outline.svg');
+    mask-image: url('svgs/menu-outline.svg');
+    -webkit-mask-image: url('svgs/menu-outline.svg');
 }
 
 .xMark {
-    background-image: url('svgs/close-outline.svg');
+    mask-image: url('svgs/close-outline.svg');
+    -webkit-mask-image: url('svgs/close-outline.svg');
 }
 
 .nfoSvg {
-    background-image: url('svgs/information-circle-outline.svg');
+    mask-image: url('svgs/information-circle-outline.svg');
+    -webkit-mask-image: url('svgs/information-circle-outline.svg');
 }
 
 #menuBtn:active {
@@ -307,7 +316,7 @@ hr {
     align-items: center;
 }
 
-.pref>div>input{
+.pref>div>input, .pref>div>select{
     width: 50%;
 }
 
@@ -317,4 +326,9 @@ hr {
 
 input[type="range"] {
     height: 7px;
+}
+
+
+#slim {
+    display: none;
 }
