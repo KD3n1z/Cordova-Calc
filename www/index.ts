@@ -344,6 +344,10 @@ function openLink(url: string): void {
     window.open(url, '_empty');
 }
 
+function exit(): void {
+    (window as any).plugins.appMinimize.minimize();
+}
+
 document.addEventListener("deviceready", () => {
     settings = {...defaultSettings};
 
