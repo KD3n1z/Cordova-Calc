@@ -345,7 +345,8 @@ function openLink(url: string): void {
 }
 
 function exit(): void {
-    (window as any).plugins.appMinimize.minimize();
+    (window as any).plugins.appMinimize.minimize(); 
+    // TODO: implement this function for ios
 }
 
 document.addEventListener("deviceready", () => {
