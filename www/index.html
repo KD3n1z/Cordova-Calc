@@ -39,7 +39,7 @@
     <body>
         <div class="wrapper" id="main">
             <div id="screen">
-                <div class="bars closeBtn" onclick="openMenu('settings', 'main')"></div>
+                <div class="bars closeBtn" onclick="document.getElementById('contextMenu').classList.remove('closed')"></div>
                 <span id="expression"></span>
                 <span id="result"></span>
             </div>
@@ -114,9 +114,9 @@
                 </tr>
             </table>
         </div>
-        <div id="settings" class="menu closed">
+        <div id="settings" class="fullscreen menu closed">
             <div class="xMark closeBtn" onclick="closeMenu('settings', 'main')"></div>
-            <div class="infoBtn nfoSvg" onclick="openMenu('info', 'settings')"></div>
+            <!--<div class="infoBtn nfoSvg" onclick="openMenu('info', 'settings')"></div>-->
             <div class="menuContent pref">
                 <div><span>Spacing</span><input id="s_spacing" type="range" value="3" min="0" max="15" onchange="setSetting('spacing', this)"></div>
                 <div><span>Radius</span><input id="s_radius" type="range" value="0" min="0" max="40" onchange="setSetting('radius', this)"></div>
@@ -131,8 +131,8 @@
                 <div><button onclick="resetSettings()">Default</button></div>
             </div>
         </div>
-        <div id="info" class="menu closed">
-            <div class="xMark closeBtn" id="menuBtn" onclick="closeMenu('info', 'settings')"></div>
+        <div id="info" class="fullscreen menu closed">
+            <div class="xMark closeBtn" id="menuBtn" onclick="closeMenu('info', 'main')"></div>
             <div class="menuContent info">
                 <span>Calculator, build <span id="buildNum">?</span></span>
                 <span>developed with &#10084; by <a onclick="openLink('https://kd3n1z.com/')">kd3n1z</a></span>
@@ -146,6 +146,13 @@
                     <a onclick="openLink('https://fonts.google.com/?query=Juan%20Pablo%20del%20Peral')">Juan Pablo del Peral</a>, 
                     <a onclick="openLink('https://fonts.google.com/?query=Jacques%20Le%20Bailly')">Jacques Le Bailly</a>
                 </span>
+            </div>
+        </div>
+        <div id="contextMenu" onclick="this.classList.add('closed')" class="fullscreen contextMenuWrapper closed">
+            <div class="contextMenu">
+                <span onclick="openMenu('settings', 'main')">Settings</span>
+                <span onclick="openMenu('info', 'main')">About</span>
+                <span onclick="Exit()">Exit</span>
             </div>
         </div>
         <div id="loading">
